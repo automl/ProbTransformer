@@ -1,0 +1,53 @@
+expt:
+  experiment_name: transformer
+  save_model: true
+data:
+  batch_size: 6000
+  seed: 5193
+  ssd:
+    max_len: 90
+    min_len: 15
+    n_eval: 50
+    n_sentence: 1000
+    sample_amount: 100000
+    seed: 100
+    sentence_len: 3
+    sentence_variations: 10
+    src_vocab_size: 500
+    trg_vocab_size: 500
+  type: ssd
+geco_criterion:
+  kappa: 0.1
+  kappa_adaption: true
+  lagmul_rate: 0.1
+  ma_decay: 0.95
+model:
+  dropout: 0.1
+  ff_factor: 4
+  max_len: 200
+  model_dim: 256
+  model_type: encoder
+  n_layers: 4
+  num_head: 4
+  prob_layer: all
+  z_factor: 1.0
+  zero_init: true
+optim:
+  beta1: 0.9
+  beta2: 0.98
+  clip_grad: 100
+  lr_high: 0.001
+  lr_low: 0.0001
+  optimizer: adamW
+  scheduler: cosine
+  warmup_epochs: 1
+  weight_decay: 0.01
+train:
+  amp: true
+  epochs: 50
+  grad_scale: 65536.0
+  iter_per_epoch: 2000
+  n_sampling: 10
+  save_freq: 10
+  eval_freq: 10
+  seed: 5193

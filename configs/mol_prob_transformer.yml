@@ -1,0 +1,53 @@
+expt:
+  experiment_name: prob_transformer
+  save_model: true
+data:
+  batch_size: 8000
+  mol:
+    block_size: 100
+    data_dir: data/guacamol2.csv
+    gen_size: 10000
+    max_length: 100
+    min_length: 10
+    props:
+    - tpsa
+    - logp
+    - sas
+    seed: 7752
+  seed: 7752
+  type: mol
+geco_criterion:
+  kappa: 0.1
+  kappa_adaption: true
+  lagmul_rate: 0.01
+  ma_decay: 0.95
+model:
+  dropout: 0.1
+  ff_factor: 4
+  max_len: 100
+  model_dim: 256
+  model_type: prob_decoder
+  n_layers: 8
+  num_head: 8
+  prob_layer: middle
+  z_factor: 0.25
+  zero_init: true
+optim:
+  beta1: 0.9
+  beta2: 0.98
+  clip_grad: 1000
+  lr_high: 0.0005
+  lr_low: 5.0e-05
+  optimizer: adamW
+  scheduler: cosine
+  warmup_epochs: 1
+  weight_decay: 0.01
+train:
+  amp: true
+  epochs: 60
+  grad_scale: 65536.0
+  iter_per_epoch: 5000
+  n_sampling: 10
+  save_freq: 10
+  eval_freq: 10
+  seed: 7752

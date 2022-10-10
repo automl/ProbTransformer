@@ -1,0 +1,48 @@
+expt:
+  experiment_name: transformer
+  save_model: true
+data:
+  batch_size: 4000
+  rna:
+    df_path: data/rna_data.plk
+    df_set_name: train
+    max_length: 500
+    min_length: 20
+    similarity: 80
+  seed: 5874
+  type: rna
+geco_criterion:
+  kappa: 0.1
+  kappa_adaption: true
+  lagmul_rate: 0.1
+  ma_decay: 0.95
+model:
+  dropout: 0.1
+  ff_factor: 4
+  max_len: 500
+  model_dim: 512
+  model_type: encoder
+  n_layers: 6
+  num_head: 8
+  prob_layer: middle
+  z_factor: 1.0
+  zero_init: true
+optim:
+  beta1: 0.9
+  beta2: 0.98
+  clip_grad: 100
+  lr_high: 0.0005
+  lr_low: 5.0e-05
+  optimizer: adamW
+  scheduler: cosine
+  warmup_epochs: 1
+  weight_decay: 0.01
+train:
+  amp: false
+  epochs: 100
+  grad_scale: 65536.0
+  iter_per_epoch: 10000
+  n_sampling: 10
+  save_freq: 10
+  eval_freq: 10
+  seed: 5874
