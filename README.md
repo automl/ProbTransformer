@@ -47,7 +47,7 @@ unzip data/guacamol2.csv.zip -d data/
 
 ## Model Checkpoints
 
-Please find checkpoints for the ProbTransformer adn CNN Head for RNA folding at:
+Please find checkpoints for the ProbTransformer and the CNN head for RNA folding at:
 ```
 https://ml.informatik.uni-freiburg.de/research-artifacts/probtransformer/prob_transformer_final.pth
 https://ml.informatik.uni-freiburg.de/research-artifacts/probtransformer/cnn_head_final.pth
