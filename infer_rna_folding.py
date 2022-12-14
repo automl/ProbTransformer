@@ -1,4 +1,5 @@
-import argparse
+import argparse, os
+import wget
 from tqdm import tqdm
 from collections import defaultdict
 import numpy as np
@@ -28,6 +29,17 @@ if __name__ == "__main__":
     parser.add_argument('-r', '--rank', default="cuda", type=str, help='Device to infer the model, cuda or cpu')
     args = parser.parse_args()
 
+    if args.cnn_head == "checkpoints/cnn_head_final.pth" and not os.path.exists("checkpoints/cnn_head_final.pth"):
+        os.makedirs("checkpoints", exist_ok=True)
+        print("Download CNN head checkpoint")
+        wget.download("https://ml.informatik.uni-freiburg.de/research-artifacts/probtransformer/cnn_head_final.pth", "checkpoints/cnn_head_final.pth")
+
+    if args.model == "checkpoints/prob_transformer_final.pth" and not os.path.exists("checkpoints/prob_transformer_final.pth"):
+        os.makedirs("checkpoints", exist_ok=True)
+        print("Download prob transformer checkpoint")
+        wget.download("https://ml.informatik.uni-freiburg.de/research-artifacts/probtransformer/prob_transformer_final.pth", "checkpoints/prob_transformer_final.pth")
+
+
     transformer_checkpoint = torch.load(args.model, map_location=torch.device('cuda'))
 
     cfg = ConfigHandler(config_dict=transformer_checkpoint['config'])
@@ -48,7 +60,7 @@ if __name__ == "__main__":
     cnn_head.eval()
 
     if args.sequence is not None:
-        print(f"Input sequence: {args.sequence}")
+        print(f"Fold input sequence {args.sequence}")
         if sorted(set(args.sequence)) != ['A', 'C', 'G', 'U']:
             raise UserWarning(f"unknown symbols in sequence: {set(args.sequence).difference('A', 'C', 'G', 'U')}. Please only use ACGU")
 
@@ -78,6 +90,7 @@ if __name__ == "__main__":
         print("Predicted binding from CNN head, close:", bindings_idx[1].tolist())
 
     if args.evaluate:
+        print("Evaluate on TS0")
         test_data = cinit(RNAHandler, cfg.data.rna.dict, df_path=args.test_data, sub_set='test', prob_training=True,
                      device=args.rank, seed=cfg.data.seed, ignore_index=-1, similarity='80', exclude=[], max_length=500)
 
