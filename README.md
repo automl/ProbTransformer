@@ -26,8 +26,8 @@ The train script runs out of the box on a downscaled config and creates an *expe
 
 Please adjust the cuda toolkit version in the `environment.yml` file to fit your setup. 
 ```
-conda env create -n myenv -f environment.yml
-conda activate myenv
+conda env create -n ptenv -f environment.yml
+conda activate ptenv
 pip install -e .
 ```
 
@@ -40,12 +40,31 @@ tar -xf data/rna_data.plk.xz -C data/
 
 #### Molecule data
 
-Download the [Guacamol dataset](https://drive.google.com/file/d/1gOSoKyGoYVdxtvy5cH2GNVDpLibk0lkS/view?usp=sharing) and extract  into `data`.
+Download the [Guacamol dataset](https://drive.google.com/file/d/1gOSoKyGoYVdxtvy5cH2GNVDpLibk0lkS/view?usp=sharing) and extract into `data`.
 ```
 unzip data/guacamol2.csv.zip -d data/
 ```
 
+## Model Checkpoints
 
+Please find checkpoints for the ProbTransformer and the CNN head for RNA folding at:
+```
+https://ml.informatik.uni-freiburg.de/research-artifacts/probtransformer/prob_transformer_final.pth
+https://ml.informatik.uni-freiburg.de/research-artifacts/probtransformer/cnn_head_final.pth
+```
+
+
+## Use the ProbTransformer for RNA folding
+
+Please use the **infer_rna_folding.py** script to fold a sequence of nucleotides (ACGU).
+```
+python infer_rna_folding.py -s ACGUCCUGUGCGAGCAUGCAUGC
+```
+
+To evaluate the uploaded model checkpoints on the test set TS0 use the **evaluate** flag. 
+```
+python infer_rna_folding.py -e 
+```
 
 ## Train a ProbTransformer/Transformer model  
 ##### on the Synthetic Sequential Distribution Task

@@ -81,10 +81,10 @@ def train_prob_transformer(config):
                            pre_src_vocab=None, pre_trg_vocab=None, token_dict=None)
         valid_data = cinit(SSDHandler, cfg.data.ssd, sample_amount=cfg.data.ssd.sample_amount // 10, device=rank,
                            pre_src_vocab=train_data.pre_src_vocab, pre_trg_vocab=train_data.pre_trg_vocab,
-                           token_dict=train_data.token_dict)
+                           token_dict=train_data.token_dict, seed=cfg.data.ssd.seed+1)
         test_data = cinit(SSDHandler, cfg.data.ssd, sample_amount=cfg.data.ssd.sample_amount // 10, device=rank,
                           pre_src_vocab=train_data.pre_src_vocab, pre_trg_vocab=train_data.pre_trg_vocab,
-                          token_dict=train_data.token_dict)
+                          token_dict=train_data.token_dict, seed=cfg.data.ssd.seed+2)
 
         seq_vocab_size = train_data.source_vocab_size
         trg_vocab_size = train_data.target_vocab_size
@@ -268,7 +268,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.config:
-        config = yaml.load(open(pathlib.Path.cwd() / pathlib.Path(args.config)))
+        config = yaml.load(open(pathlib.Path.cwd() / pathlib.Path(args.config)), Loader=yaml.Loader)
     else:
 
         config = {

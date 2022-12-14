@@ -13,4 +13,5 @@ dependencies:
     - distance==0.1.3
     - pyyaml==5.4.1
     - tqdm==4.62.3
+    - wget==3.2
 

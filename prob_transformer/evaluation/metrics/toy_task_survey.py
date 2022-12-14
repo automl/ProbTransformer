@@ -42,7 +42,7 @@ def eval_toy_sample(n_pred_dist, true_dist, length):
 
     avg_pred_binary = n_pred_binary / n_pred_dist.shape[0]
 
-    samplewise_kl = torch.sum(true_dist * torch.log(true_dist / (avg_pred_binary + 1e-32)), dim=1, keepdim=True)
+    samplewise_kl = torch.sum(true_dist * torch.log(true_dist / (avg_pred_binary + 1e-32) + 1e-32), dim=1, keepdim=True)
     samplewise_kl = torch.mean(samplewise_kl).cpu().detach().numpy()
 
     mean_div = torch.mean(0.5 * torch.sum(torch.abs(true_dist - avg_pred_binary), dim=1, keepdim=True)).cpu().detach().numpy()
