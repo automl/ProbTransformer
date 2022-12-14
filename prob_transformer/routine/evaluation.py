@@ -203,32 +203,6 @@ def correct_invalid_structure(hypo, dist, stoi, length):
     return hypo
 
 
-def struct_to_mat(struct):
-    bracket_buffer = {"0": deque(), "1": deque(), "2": deque()}
-    struct_mat = np.zeros([len(struct), len(struct)])
-
-    pairs = []
-
-    for idx, symb in enumerate(struct):
-        if '.' == symb[0]:
-            continue
-        else:
-            if 'C' == symb[1]:
-                continue
-            else:
-                if "(" == symb[0]:
-                    bracket_buffer[symb[1]].append(idx)
-                elif ")" == symb[0]:
-                    if len(bracket_buffer[symb[1]]) == 0:
-                        continue  # return False
-                    open_idx = bracket_buffer[symb[1]].pop()
-
-                    struct_mat[open_idx, idx] = 1
-                    struct_mat[idx, open_idx] = 1
-                    pairs.append((idx, open_idx))
-    return struct_mat, pairs
-
-
 def run_evaluation(cfg, data_iter, model, threshold=None):
     model.eval()
 

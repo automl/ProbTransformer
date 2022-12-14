@@ -113,7 +113,10 @@ class RNAHandler():
         structure = input_sample["structure"]
         pos1id = input_sample["pos1id"]
         pos2id = input_sample["pos2id"]
-        pdb_sample = int(input_sample['is_pdb'])
+        if 'is_pdb' in input_sample:
+            pdb_sample = int(input_sample['is_pdb'])
+        else:
+            pdb_sample = 0
         dataset = self.datasettoint[input_sample['dataset']]
 
         length = len(sequence)

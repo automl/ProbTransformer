@@ -20,7 +20,7 @@ geco_criterion:
   kappa: 0.1
   kappa_adaption: true
   lagmul_rate: 0.1
-  ma_decay: 0.95
+  ma_decay: 0.98
 model:
   dropout: 0.1
   ff_factor: 4
@@ -49,5 +49,5 @@ train:
   iter_per_epoch: 2000
   n_sampling: 10
   save_freq: 10
-  eval_freq: 10
+  eval_freq: 1
   seed: 5193

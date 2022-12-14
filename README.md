@@ -45,7 +45,17 @@ Download the [Guacamol dataset](https://drive.google.com/file/d/1gOSoKyGoYVdxtvy
 unzip data/guacamol2.csv.zip -d data/
 ```
 
+## Use the ProbTransformer for RNA folding
 
+Please use the **infer_rna_folding.py** script to fold a sequence of nucleotides (ACGU).
+```
+python infer_rna_folding.py -s ACGUCCUGUGCGAGCAUGCAUGC
+```
+
+To evaluate the uploaded model checkpoints on the test set TS0 use the **evaluate** flag. 
+```
+python infer_rna_folding.py -e 
+```
 
 ## Train a ProbTransformer/Transformer model  
 ##### on the Synthetic Sequential Distribution Task

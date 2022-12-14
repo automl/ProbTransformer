@@ -1,4 +1,4 @@
-import string
+import string, os
 from types import SimpleNamespace
 from collections import OrderedDict
 import numpy as np
@@ -43,7 +43,14 @@ class SSDHandler():
         self.source_vocab_size = len(self.source_stoi)
         self.target_vocab_size = len(self.target_stoi)
 
-        self.sample_list = self._generate_data(size=sample_amount)
+        os.makedirs("cache", exist_ok=True)
+        file_name = f"cache/{min_len}_{max_len}_{sentence_variations}_{sentence_len}_{sample_amount}_{seed}.tlist"
+
+        if not os.path.isfile(file_name):
+            self.sample_list = self._generate_data(size=sample_amount)
+            torch.save(self.sample_list, file_name)
+        else:
+            self.sample_list = torch.load(file_name)
 
         self.trg_vocab = SimpleNamespace(**{"id_to_token": lambda i: self.target_itos[i],
                                             "token_to_id": lambda i: self.target_stoi[i],

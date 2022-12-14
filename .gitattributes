@@ -1,0 +1,2 @@
+checkpoints/prob_transformer_final.pth filter=lfs diff=lfs merge=lfs -text
+checkpoints/cnn_head_final.pth filter=lfs diff=lfs merge=lfs -text
