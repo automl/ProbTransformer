@@ -1,8 +1,8 @@
 import torch.nn as nn
 
-from prob_transformer.module.feed_forward import FeedForward
-from prob_transformer.module.probabilistic_forward import ProbabilisticForward
-from prob_transformer.module.attention import PreNormAttention
+from RnaBench.lib.rna_folding_algorithms.DL.ProbTransformer.prob_transformer.module.feed_forward import FeedForward
+from RnaBench.lib.rna_folding_algorithms.DL.ProbTransformer.prob_transformer.module.probabilistic_forward import ProbabilisticForward
+from RnaBench.lib.rna_folding_algorithms.DL.ProbTransformer.prob_transformer.module.attention import PreNormAttention
 
 
 class ProbFormerBlock(nn.Module):

@@ -2,8 +2,8 @@ import torch
 import torch.nn as nn
 import torch.cuda.amp as amp
 
-from prob_transformer.module.probformer_stack import ProbFormerStack
-from prob_transformer.module.embedding import PosEmbedding
+from RnaBench.lib.rna_folding_algorithms.DL.ProbTransformer.prob_transformer.module.probformer_stack import ProbFormerStack
+from RnaBench.lib.rna_folding_algorithms.DL.ProbTransformer.prob_transformer.module.embedding import PosEmbedding
 
 
 class ProbTransformer(nn.Module):

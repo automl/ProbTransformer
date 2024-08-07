@@ -2,7 +2,7 @@ import os
 import yaml
 import pathlib
 
-from prob_transformer.utils.handler.base_handler import Handler
+from RnaBench.lib.rna_folding_algorithms.DL.ProbTransformer.prob_transformer.utils.handler.base_handler import Handler
 
 """
 reads a yml config or a dict and safes it into experiment folder

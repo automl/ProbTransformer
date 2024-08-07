@@ -40,7 +40,7 @@ if __name__ == "__main__":
         wget.download("https://ml.informatik.uni-freiburg.de/research-artifacts/probtransformer/prob_transformer_final.pth", "checkpoints/prob_transformer_final.pth")
 
 
-    transformer_checkpoint = torch.load(args.model, map_location=torch.device('cuda'))
+    transformer_checkpoint = torch.load(args.model, map_location=torch.device(args.rank))
 
     cfg = ConfigHandler(config_dict=transformer_checkpoint['config'])
 
@@ -56,7 +56,7 @@ if __name__ == "__main__":
     model.load_state_dict(transformer_checkpoint['state_dict'], strict=False)
     model.eval()
 
-    cnn_head = torch.load(args.cnn_head)
+    cnn_head = torch.load(args.cnn_head, map_location=torch.device(args.rank))
     cnn_head.eval()
 
     if args.sequence is not None:

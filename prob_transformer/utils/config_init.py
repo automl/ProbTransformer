@@ -1,6 +1,6 @@
 from typing import Dict, List
 import inspect
-from prob_transformer.utils.handler.config import ConfigHandler, AttributeDict
+from RnaBench.lib.rna_folding_algorithms.DL.ProbTransformer.prob_transformer.utils.handler.config import ConfigHandler, AttributeDict
 
 
 def cinit(instance, config, **kwargs):

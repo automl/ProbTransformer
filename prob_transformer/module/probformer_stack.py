@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-from prob_transformer.module.probformer_block import ProbFormerBlock
+from RnaBench.lib.rna_folding_algorithms.DL.ProbTransformer.prob_transformer.module.probformer_block import ProbFormerBlock
 
 
 class ProbFormerStack(nn.Module):

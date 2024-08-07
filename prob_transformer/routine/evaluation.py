@@ -7,18 +7,18 @@ import torch
 import collections
 from tqdm import tqdm
 import pandas as pd
-from moses.utils import get_mol
-from rdkit.Chem import QED
-from rdkit.Chem import Crippen
-from rdkit.Chem.rdMolDescriptors import CalcTPSA
-from rdkit import Chem
-from rdkit import RDLogger
-
-RDLogger.DisableLog('rdApp.*')  # disable rdkit error log
-from prob_transformer.evaluation.metrics.sascore import calculateScore
-from prob_transformer.data.mol_handler import check_novelty, sample_batch, canonic_smiles
-from prob_transformer.evaluation.statistics_center import StatisticsCenter
-from prob_transformer.evaluation.metrics.toy_task_survey import eval_toy_sample
+# from moses.utils import get_mol
+# from rdkit.Chem import QED
+# from rdkit.Chem import Crippen
+# from rdkit.Chem.rdMolDescriptors import CalcTPSA
+# from rdkit import Chem
+# from rdkit import RDLogger
+#
+# RDLogger.DisableLog('rdApp.*')  # disable rdkit error log
+# from prob_transformer.evaluation.metrics.sascore import calculateScore
+# from prob_transformer.data.mol_handler import check_novelty, sample_batch, canonic_smiles
+from RnaBench.lib.rna_folding_algorithms.DL.ProbTransformer.prob_transformer.evaluation.statistics_center import StatisticsCenter
+from RnaBench.lib.rna_folding_algorithms.DL.ProbTransformer.prob_transformer.evaluation.metrics.toy_task_survey import eval_toy_sample
 
 
 def infer_encoder(model, src, src_len, n=1, dropout_sampling=False):
